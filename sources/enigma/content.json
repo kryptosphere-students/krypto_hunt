@@ -1,0 +1,34 @@
+{
+  "etapes":[
+    {
+      "nom":"Naissance d'un nouvel héros",
+      "scenario":"",
+      "sous-etapes":[
+        {
+          "scenario":"",
+          "type_enigme":"",
+          "geoloc":""
+        },
+        {
+        "type_enigme":"",
+        "geoloc":""
+        }
+      ]
+    },
+    {
+      "nom":"Naissance d'un nouvel héros",
+      "scenario":"",
+      "sous-etapes":[
+        {
+          "scenario":"",
+          "type_enigme":"",
+          "geoloc":""
+        },
+        {
+        "type_enigme":"",
+        "geoloc":""
+        }
+      ]
+    }
+  ]
+}

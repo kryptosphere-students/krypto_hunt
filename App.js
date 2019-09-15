@@ -1,60 +1,36 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import SplashScreen from './screens/SplashScreen.js';
 import MapScreen from './screens/MapScreen.js';
+import AuthScreen from './screens/AuthScreen.js';
+import AuthLoadingScreen from './screens/AuthLoadingScreen.js';
+import AccountScreen from './screens/AccountScreen.js';
+import { createSwitchNavigator, createStackNavigator, createAppContainer, createBottomTabNavigator} from 'react-navigation';
+// Implementation of HomeScreen, OtherScreen, SignInScreen, AuthLoadingScreen
+// goes here.
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { isLoading: true }
-  }
-
-  performTimeConsumingTask = async() => {
-    return new Promise((resolve) =>
-      setTimeout(
-        () => { resolve('result') },
-        2000
-      )
-    );
-  }
-
-  async componentDidMount() {
-    // Preload data from an external API
-    // Preload data using AsyncStorage
-    const data = await this.performTimeConsumingTask();
-
-    if (data !== null) {
-      this.setState({ isLoading: false });
-    }
-  }
-
-  render() {
-    if (this.state.isLoading) {
-      return <SplashScreen />;
-    }
-
-    return (
-      <MapScreen />
-    );
+const tabBarOptions= {tabBarOptions: {
+  activeTintColor: '#e2f6fe',
+  inactiveTintColor: '#96c4ff',
+  activeBackgroundColor:'#4897f9',
+  labelStyle: {
+    fontSize: 12
+  },
+  style: {
+    backgroundColor: '#000',
   }
 }
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+const AppStack = createBottomTabNavigator({ Map: MapScreen, Account: AccountScreen },tabBarOptions);// contenu connecté
+const AuthStack = createStackNavigator({ Auth: AuthScreen });//contenu lorsque non connecté
+
+export default createAppContainer(createSwitchNavigator(
+  {
+    AuthLoading: AuthLoadingScreen,//on définit les stack ici
+    App: AppStack,
+    Auth: AuthStack
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  {
+    initialRouteName: 'AuthLoading',
+  }
+));

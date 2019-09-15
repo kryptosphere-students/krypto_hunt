@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import AuthForm from '../components/AuthForm.js';
+import MapView from 'react-native-maps';
 
 
 export default class MapScreen extends React.Component{
@@ -18,5 +20,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
+  }
 });
